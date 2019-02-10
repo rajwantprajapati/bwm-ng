@@ -23,9 +23,16 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "src/styles.scss",
+              "node_modules/bootstrap/dist/css/bootstrap.min.css"
             ],
-            "scripts": []
+            "scripts": [],
+            "stylePreprocessorOptions": {
+              "includePaths": [
+                "src",
+                "src/styles/"
+              ]
+            }
           },
           "configurations": {
             "production": {
@@ -123,5 +130,10 @@
       }
     }
   },
-  "defaultProject": "bwm-project"
+  "defaultProject": "bwm-project",
+  "schematics": {
+    "@schematics/angular:component": {
+      "styleext": "scss"
+    }
+  }
 }
