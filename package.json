@@ -22,7 +22,9 @@
     "@angular/router": "^6.1.0",
     "bootstrap": "^4.1.0",
     "core-js": "^2.5.4",
+    "express": "^4.16.4",
     "lodash": "^4.17.11",
+    "mongoose": "^5.4.13",
     "rxjs": "~6.2.0",
     "zone.js": "~0.8.26"
   },
