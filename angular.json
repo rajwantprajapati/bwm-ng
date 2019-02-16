@@ -7,7 +7,7 @@
       "root": "",
       "sourceRoot": "src",
       "projectType": "application",
-      "prefix": "app",
+      "prefix": "bwm",
       "schematics": {},
       "architect": {
         "build": {
@@ -133,7 +133,8 @@
   "defaultProject": "bwm-project",
   "schematics": {
     "@schematics/angular:component": {
-      "styleext": "scss"
+      "styleext": "scss",
+      "spec": false
     }
   }
 }
