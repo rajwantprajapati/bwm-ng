@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "ng serve --proxy-config proxy.conf.json",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
@@ -23,8 +23,10 @@
     "bootstrap": "^4.1.0",
     "core-js": "^2.5.4",
     "express": "^4.16.4",
+    "font-awesome": "^4.7.0",
     "lodash": "^4.17.11",
     "mongoose": "^5.4.13",
+    "ngx-pipes": "^2.3.10",
     "rxjs": "~6.2.0",
     "zone.js": "~0.8.26"
   },
