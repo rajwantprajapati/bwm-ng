@@ -1,11 +1,12 @@
 const express = require("express");
 const mongoose = require("mongoose");
+const bodyParser = require("body-parser");
 const config = require("./config/dev");
-const Rental = require("./models/rental");
 const FakeDb = require("./fake-db");
-const rentalRoutes = require("./routes/rentals");
+const rentalRoutes = require("./routes/rentals"),
+      userRoutes = require("./routes/users");
 
-mongoose.connect(config.DB_URI, { useNewUrlParser: true }, () => {
+mongoose.connect(config.DB_URI, { useNewUrlParser: true, useCreateIndex: true }, () => {
     console.log("Connected To Db");
 }).then(() => {
     const fakeDb = new FakeDb();
@@ -14,11 +15,10 @@ mongoose.connect(config.DB_URI, { useNewUrlParser: true }, () => {
 
 const app = express();
 
-app.use('/api/v1/rentals', rentalRoutes);
+app.use(bodyParser.json());
 
-app.get('/rentals', (req, res) => {
-    res.json({'sucess': true});
-});
+app.use('/api/v1/rentals', rentalRoutes);
+app.use('/api/v1/users', userRoutes);
 
 const PORT = process.env.PORT || 3001;
 
