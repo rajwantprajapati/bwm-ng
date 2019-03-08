@@ -14,14 +14,14 @@ exports.auth = (req, res) => {
            return res.status(422).send({errors: normalizeErrors(err.errors)});
         }
         if(!user) {
-            return res.status(422).send({title: 'Invalid User!', details: 'User does not exist'});
+            return res.status(422).send({errors: [{title: 'Invalid User!', detail: 'User does not exist'}]});
         }
         if(user.hasSamePassword(password)) {
             // Return JWT Token
             const token = jwt.sign({userId: user.id, username: user.username}, config.SECRET, {expiresIn: '1h'});
             return res.json(token);
         }else{
-            return res.status(422).send({title: 'Wrong Data!', details: 'Wrong email or password!'});
+            return res.status(422).send({errors: [{title: 'Wrong Data!', detail: 'Wrong email or password!'}]});
         }
     });
 }
