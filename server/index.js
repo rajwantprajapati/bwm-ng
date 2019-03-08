@@ -10,7 +10,7 @@ mongoose.connect(config.DB_URI, { useNewUrlParser: true, useCreateIndex: true },
     console.log("Connected To Db");
 }).then(() => {
     const fakeDb = new FakeDb();
-    fakeDb.seeDb();
+    /* fakeDb.seeDb(); */
 });
 
 const app = express();
