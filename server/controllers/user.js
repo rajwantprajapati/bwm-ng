@@ -71,11 +71,11 @@ exports.authMiddleWare = function(req, res, next) {
                 res.locals.user = user;
                 next();
             }else {
-                return notAuthorized();
+                return notAuthorized(res);
             }
         });
     }else{
-        return notAuthorized();
+        return notAuthorized(res);
     }
 }
 
