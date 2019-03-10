@@ -12,7 +12,7 @@ exports.createBooking = function(req, res){
     Rental.findById(rental._id)
           .populate('bookings')
           .populate('user')
-          .exec(function(err, foundRental){
+          .exec(function(err, foundRental){              
               if(err) {
                   return res.status(422).send({errors: normalizeErrors(err.errors)});
               }

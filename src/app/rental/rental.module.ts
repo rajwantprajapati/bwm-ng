@@ -13,6 +13,7 @@ import { MapModule } from '../common/map/map.module';
 import { NgPipesModule } from 'ngx-pipes';
 import { AuthGuard } from '../auth/shared/auth.gaurd';
 import { RentalDetailBookingComponent } from './rental-detail/rental-detail-booking/rental-detail-booking.component';
+import { FormsModule } from '@angular/forms';
 
 const routes: Routes = [
   { path: 'rentals',
@@ -27,6 +28,7 @@ const routes: Routes = [
 @NgModule({
   imports: [
     CommonModule,
+    FormsModule,
     RouterModule.forChild(routes),
     HttpClientModule,
     NgPipesModule,
