@@ -5,4 +5,6 @@ const UserCtrl = require("../controllers/user");
 
 router.post("", UserCtrl.authMiddleWare, BookingCtrl.createBooking);
 
+router.get("/manage", UserCtrl.authMiddleWare, BookingCtrl.getUserBookings);
+
 module.exports = router;
