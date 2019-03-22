@@ -3,13 +3,13 @@ const User = require("../models/user");
 const {normalizeErrors} = require("../helpers/mongoose");
 const config = require("../config/dev");
 
-exports.auth = (req, res) => {
+exports.auth = function(req, res) {
     const {email, password} = req.body;
 
     if(!email || !password) {
         return res.status(422).send({errors: [{title: 'Data missing', detail: 'Provide email and password!'}]});
     }
-    User.findOne({email}, (err, user) => {
+    User.findOne({email}, function(err, user) {
         if(err){
            return res.status(422).send({errors: normalizeErrors(err.errors)});
         }
@@ -26,7 +26,7 @@ exports.auth = (req, res) => {
     });
 }
 
-exports.register = (req, res) => {
+exports.register = function(req, res){
     /* const username = req.body.username,
           email = req.body.email,
           password = req.body.password,
@@ -41,7 +41,7 @@ exports.register = (req, res) => {
         return res.status(422).send({errors: [{title: 'Invalid password', detail: 'Password is not same as confirmation!'}]});
     }
 
-    User.findOne({email}, (err, existingUser) => {
+    User.findOne({email}, function(err, existingUser) {
         if(err){
             return res.status(422).send({errors: normalizeErrors(err.errors)});
         }
@@ -50,7 +50,7 @@ exports.register = (req, res) => {
         }
 
         const user = new User({username, email, password});
-        user.save((err) =>{
+        user.save(function(err){
             if(err){
                 return  res.status(422).send({errors: normalizeErrors(err.errors)});
             }
@@ -63,7 +63,7 @@ exports.authMiddleWare = function(req, res, next) {
     const token = req.headers.authorization;
     if(token) {
         const user = parseToken(token);
-        User.findById(user.userId, (err, user) => {
+        User.findById(user.userId, function(err, user) {
             if(err) {
                 return res.status(422).send({errors: normalizeErrors(err.errors)});
             }
