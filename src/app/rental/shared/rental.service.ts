@@ -22,7 +22,15 @@ export class RentalService {
     return this.http.get(`/api/v1/rentals?city=${city}`);
   }
 
+  public getUserRentals(): Observable<any> {
+    return this.http.get('/api/v1/rentals/manage');
+  } 
+
   public createRental(rental: Rental): Observable<any> {
     return this.http.post('/api/v1/rentals', rental);
+  }
+  
+  public deleteRental(rentalId: string): Observable<any> {
+    return this.http.delete(`/api/v1/rentals/${rentalId}`);
   }
 }

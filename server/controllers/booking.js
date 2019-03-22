@@ -23,12 +23,12 @@ exports.createBooking = function(req, res){
                 booking.user = user;
                 booking.rental = foundRental;
                 foundRental.bookings.push(booking);
-                booking.save((err) => {
+                booking.save(function(err) {
                     if(err) {
                         return res.status(422).send({errors: normalizeErrors(err.errors)});
                     }
                     foundRental.save();
-                    User.updateOne({_id: user.id}, {$push: {bookings: booking}}, ()=>{});
+                    User.updateOne({_id: user.id}, {$push: {bookings: booking}}, function(){});
                     return res.json({startAt: booking.startAt, endAt: booking.endAt});
                 });               
               }else{
@@ -37,7 +37,7 @@ exports.createBooking = function(req, res){
           });
 }
 
-exports.getUserBookings = function(req, res) {
+/* exports.getUserBookings = function(req, res) {
     const user = res.locals.user;
 
     Booking.where({user})
@@ -49,6 +49,22 @@ exports.getUserBookings = function(req, res) {
 
                return res.json(foundBookings);
            });
+} */
+
+exports.getUserBookings = function(req, res) {
+    const user = res.locals.user;
+  
+    Booking
+      .where({user})
+      .populate('rentals')
+      .exec(function(err, foundBookings) {
+  
+      if (err) {
+        return res.status(422).send({errors: normalizeErrors(err.errors)});
+      }
+  
+      return res.json(foundBookings);
+    });
 }
 
 function isValidBooking(proposedBooking, rental) {

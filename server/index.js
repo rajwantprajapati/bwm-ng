@@ -9,7 +9,7 @@ const rentalRoutes = require("./routes/rentals"),
 
 mongoose.connect(config.DB_URI, { useNewUrlParser: true, useCreateIndex: true }, () => {
     console.log("Connected To Db");
-}).then(() => {
+}).then(function() {
     const fakeDb = new FakeDb();
     /* fakeDb.seeDb(); */
 });
